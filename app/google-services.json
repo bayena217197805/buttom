@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "674127479222",
+    "project_id": "buttommenue",
+    "storage_bucket": "buttommenue.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674127479222:android:9dadb809a0fddd5ca44117",
+        "android_client_info": {
+          "package_name": "com.example.buttomenu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoEGLrf6-zGC7fQBfgwjtA9pvLULXl8jQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

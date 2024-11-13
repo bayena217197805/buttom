@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:title="Home"
+    android:id="@+id/menuhome"
+
+    android:icon="@drawable/home"
+    />
+    <item
+        android:title="Dashboard"
+        android:id="@+id/menudashboard"
+        android:icon="@drawable/icon_dashboard"
+        />
+    <item
+        android:title="Login"
+        android:id="@+id/menu_login"
+        android:icon="@drawable/icon_login"
+        />
+
+
+</menu>
