@@ -16,6 +16,11 @@
         android:id="@+id/menu_login"
         android:icon="@drawable/icon_login"
         />
+    <item
+        android:title="signup"
+        android:id="@+id/menu_signup"
+        android:icon="@drawable/signup"
+        />
 
 
 </menu>

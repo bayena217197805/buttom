@@ -17,12 +17,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class Loginfrag extends Fragment {
 
 TextInputEditText et_email,txtpassword;
-Button btnlogin;
+Button btnlogin,buttonsignup;
 private FirebaseAuth mAuth;
 
     public Loginfrag() {
@@ -44,6 +45,18 @@ private FirebaseAuth mAuth;
         et_email=view.findViewById(R.id.et_email);
         txtpassword=view.findViewById(R.id.et_pass);
         btnlogin=view.findViewById(R.id.buttonlogij);
+        buttonsignup=view.findViewById(R.id.buttonsignup);
+        buttonsignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.loginFrame.setVisibility(View.INVISIBLE);
+                MainActivity.homFrame.setVisibility(View.INVISIBLE);
+                MainActivity.dashFrame.setVisibility(View.INVISIBLE);
+                MainActivity.signupfram.setVisibility(View.VISIBLE);
+
+            }
+        });
+
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +66,9 @@ private FirebaseAuth mAuth;
                 if(userName.equals("bayena")&&password.equals("123456")){
                     Toast.makeText(getContext(), "loginsucsses", Toast.LENGTH_SHORT).show();
                 }
+
             }
+
         });
         return view;
     }
@@ -67,6 +82,9 @@ private FirebaseAuth mAuth;
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(getActivity(), "login sucsseful", Toast.LENGTH_SHORT).show();
+                        et_email.setText(null);
+                        txtpassword.setText(null);
+                        MainActivity.islogin=true;
                         MainActivity.loginFrame.setVisibility(View.INVISIBLE);
                         MainActivity.homFrame.setVisibility(View.VISIBLE);
                         MainActivity.dashFrame.setVisibility(View.INVISIBLE);
@@ -79,5 +97,19 @@ private FirebaseAuth mAuth;
         Toast.makeText(getActivity(), "please fill in files", Toast.LENGTH_SHORT).show();
 
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser=mAuth.getCurrentUser();
+        if(currentUser!=null){
+            et_email.setText(null);
+            txtpassword.setText(null);
+            MainActivity.islogin=true;
+            MainActivity.loginFrame.setVisibility(View.INVISIBLE);
+            MainActivity.homFrame.setVisibility(View.VISIBLE);
+            MainActivity.dashFrame.setVisibility(View.INVISIBLE);
+        }
     }
 }
