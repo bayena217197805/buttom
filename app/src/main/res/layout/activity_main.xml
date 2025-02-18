@@ -16,12 +16,13 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation"/>
     <FrameLayout
-        android:id="@+id/login_fram"
+        android:id="@+id/signup_fram"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation"/>
+
     <FrameLayout
-        android:id="@+id/signup_fram"
+        android:id="@+id/login_fram"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation"/>

@@ -12,14 +12,14 @@
         android:icon="@drawable/icon_dashboard"
         />
     <item
-        android:title="Login"
+        android:title="signup"
         android:id="@+id/menu_login"
-        android:icon="@drawable/icon_login"
+        android:icon="@drawable/signup"
         />
     <item
-        android:title="signup"
+        android:title="Login"
         android:id="@+id/menu_signup"
-        android:icon="@drawable/signup"
+        android:icon="@drawable/icon_login"
         />
 
 
