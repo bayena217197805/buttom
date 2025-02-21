@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#A98FD8"
-    tools:context=".Signup1">
+    tools:context=".Details">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

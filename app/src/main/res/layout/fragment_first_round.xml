@@ -32,12 +32,14 @@
                 android:layout_height="94dp"
 
                 android:src="@drawable/backcardd" />
+
             <ImageView
                 android:id="@+id/emojy1"
                 android:layout_width="95dp"
                 android:layout_height="94dp"
 
                 android:src="@drawable/backcardd" />
+
             <ImageView
                 android:id="@+id/emojy2"
                 android:layout_width="95dp"
