@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#AF89F3"
+    tools:context=".Instructions">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- عنوان التعليمات -->
+            <TextView
+                android:id="@+id/tvInstructionsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instructions"
+                android:layout_marginTop="20dp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#333"
+                android:gravity="center"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- التعليمات مع الصور -->
+
+            <!-- القانون 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1. Flip the cards to find matching pairs."
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:padding="8dp"/>
+
+
+            </LinearLayout>
+
+            <!-- القانون 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2. Use the help button to reveal two matching cards, but it will reduce your score."
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:padding="8dp"/>
+
+                <ImageView
+                    android:id="@+id/imgRule2"
+                    android:layout_width="169dp"
+                    android:layout_height="145dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="Using the help button"
+                    android:src="@drawable/hint" />
+            </LinearLayout>
+
+            <!-- القانون 3 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3. Your score depends on the number of attempts and help usage—fewer attempts mean a higher score!"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:padding="8dp"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</FrameLayout>

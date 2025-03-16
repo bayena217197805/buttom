@@ -7,18 +7,19 @@
     android:icon="@drawable/home"
     />
     <item
-        android:title="Dashboard"
-        android:id="@+id/menudashboard"
-        android:icon="@drawable/icon_dashboard"
+        android:title="Instructions"
+        android:id="@+id/menuinstructions"
+        android:icon="@drawable/instructions"
         />
     <item
-        android:title="signup"
-        android:id="@+id/menu_login"
+        android:title="Details"
+        android:id="@+id/menu_details"
         android:icon="@drawable/signup"
         />
     <item
         android:title="Login"
-        android:id="@+id/menu_signup"
+
+        android:id="@+id/menu_login"
         android:icon="@drawable/icon_login"
         />
 

@@ -2,4 +2,9 @@
     <string name="app_name">ButtoMenu</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="instructions_text">
+     1. Flip the cards to find matching pairs. If they don’t match, they will flip back. \n\n
+    2. Use the help button to reveal two matching cards, but it will reduce your score. \n\n
+    3. Your score depends on the number of attempts and help usage—fewer attempts mean a higher score!
+</string>
 </resources>

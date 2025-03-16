@@ -10,13 +10,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <ImageView
-            android:id="@+id/em"
-            android:layout_width="136dp"
-            android:layout_height="123dp"
-            android:layout_marginLeft="140dp"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/rouund4" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Score:"
+                android:textSize="30dp"/>
+
+            <ImageView
+                android:id="@+id/em1"
+                android:layout_marginTop="30dp"
+                android:layout_width="136dp"
+                android:layout_height="123dp"
+                android:layout_marginLeft="50dp"
+                android:src="@drawable/round4p4" />
+            <ImageView
+                android:id="@+id/em"
+                android:layout_width="150dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/light1" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -26,61 +43,29 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/emojy"
+                android:id="@+id/r4p1"
                 android:layout_width="95dp"
                 android:layout_height="74dp"
 
                 android:src="@drawable/backcardd" />
             <ImageView
-                android:id="@+id/emojy1"
+                android:id="@+id/r4p2"
                 android:layout_width="95dp"
                 android:layout_height="74dp"
 
                 android:src="@drawable/backcardd" />
             <ImageView
-                android:id="@+id/emojy2"
+                android:id="@+id/r4p3"
                 android:layout_width="95dp"
                 android:layout_height="74dp"
 
                 android:src="@drawable/backcardd" />
 
             <ImageView
-                android:id="@+id/emojy11"
+                android:id="@+id/r4p4"
                 android:layout_width="95dp"
                 android:layout_height="74dp"
 
-                android:src="@drawable/backcardd" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/emojy1119"
-                android:layout_width="95dp"
-                android:layout_height="74dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/backcardd" />
-            <ImageView
-                android:id="@+id/emojy111"
-                android:layout_width="95dp"
-                android:layout_height="74dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/backcardd" />
-            <ImageView
-                android:id="@+id/emojy211"
-                android:layout_width="95dp"
-                android:layout_height="74dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/backcardd" />
-            <ImageView
-                android:id="@+id/emojy2111"
-                android:layout_width="95dp"
-                android:layout_height="74dp"
-                android:layout_marginTop="20dp"
                 android:src="@drawable/backcardd" />
 
         </LinearLayout>
@@ -91,30 +76,29 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/emo66"
+                android:id="@+id/r4p5"
                 android:layout_width="95dp"
                 android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/backcardd" />
             <ImageView
-                android:id="@+id/emo99"
+                android:id="@+id/r4p6"
                 android:layout_width="95dp"
                 android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/backcardd" />
             <ImageView
-                android:id="@+id/emojy0877"
+                android:id="@+id/r4p7"
                 android:layout_width="95dp"
                 android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/backcardd" />
             <ImageView
-                android:id="@+id/emojy087"
+                android:id="@+id/r4p8"
                 android:layout_width="95dp"
                 android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/backcardd" />
-
 
         </LinearLayout>
         <LinearLayout
@@ -124,25 +108,25 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/emojy11111"
+                android:id="@+id/r4p9"
                 android:layout_width="95dp"
                 android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/backcardd" />
             <ImageView
-                android:id="@+id/emojy1111111"
+                android:id="@+id/r4p10"
                 android:layout_width="95dp"
                 android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/backcardd" />
             <ImageView
-                android:id="@+id/emojyuhu1111"
+                android:id="@+id/r4p11"
                 android:layout_width="95dp"
                 android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/backcardd" />
             <ImageView
-                android:id="@+id/emojyuhu11113"
+                android:id="@+id/r4p12"
                 android:layout_width="95dp"
                 android:layout_height="74dp"
                 android:layout_marginTop="20dp"
@@ -157,25 +141,58 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/emojy98"
+                android:id="@+id/r4p13"
                 android:layout_width="95dp"
                 android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/backcardd" />
             <ImageView
-                android:id="@+id/emojy86"
+                android:id="@+id/r4p14"
                 android:layout_width="95dp"
                 android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/backcardd" />
             <ImageView
-                android:id="@+id/emojy11111111"
+                android:id="@+id/r4p15"
                 android:layout_width="95dp"
                 android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/backcardd" />
             <ImageView
-                android:id="@+id/emojy1010"
+                android:id="@+id/r4p16"
+                android:layout_width="95dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/backcardd" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/r4p17"
+                android:layout_width="95dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/backcardd" />
+            <ImageView
+                android:id="@+id/r4p18"
+                android:layout_width="95dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/backcardd" />
+            <ImageView
+                android:id="@+id/r4p19"
+                android:layout_width="95dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/backcardd" />
+            <ImageView
+                android:id="@+id/r4p20"
                 android:layout_width="95dp"
                 android:layout_height="74dp"
                 android:layout_marginTop="20dp"

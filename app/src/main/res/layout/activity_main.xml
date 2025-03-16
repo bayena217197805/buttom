@@ -11,12 +11,12 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation"/>
     <FrameLayout
-        android:id="@+id/dash_fram"
+        android:id="@+id/instructions_fram"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation"/>
     <FrameLayout
-        android:id="@+id/signup_fram"
+        android:id="@+id/details_fram"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation"/>
@@ -26,6 +26,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation"/>
+    <FrameLayout
+        android:id="@+id/signup_fram"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation"/>
+    <FrameLayout
+        android:id="@+id/secondRound_fram"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation"/>
+
 
 
 <com.google.android.material.bottomnavigation.BottomNavigationView

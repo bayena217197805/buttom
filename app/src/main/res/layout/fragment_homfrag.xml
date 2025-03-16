@@ -3,30 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bink"
+    android:background="#ECDDF9"
     tools:context=".Homfrag">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="70dp"
+        android:text="Memory game"
+        android:textSize="30dp" />
+
+    <ImageView
+        android:id="@+id/emojy"
+        android:layout_width="400dp"
+        android:layout_height="356dp"
+        android:layout_marginTop="160dp"
+        android:src="@drawable/mind2" />
+
+    <Button
+        android:layout_width="180dp"
+        android:text="Play"
+        android:id="@+id/playbutton"
+        android:layout_marginTop="560dp"
+        android:layout_marginLeft="120dp"
+        android:layout_height="60dp"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_logout"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:id="@+id/btn_logout"
         android:layout_gravity="bottom|right"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:src="@drawable/logout"/>
-
-
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:orientation="vertical">
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:textSize="50sp"
-           android:text="Home Fragment"
-           android:layout_gravity="center"
-           android:layout_marginTop="50dp"/>
-   </LinearLayout>
+        android:src="@drawable/logout" />
 
 
 </FrameLayout>

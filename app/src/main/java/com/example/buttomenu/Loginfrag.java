@@ -51,8 +51,11 @@ private FirebaseAuth mAuth;
             public void onClick(View v) {
                 MainActivity.loginFrame.setVisibility(View.INVISIBLE);
                 MainActivity.homFrame.setVisibility(View.INVISIBLE);
-                MainActivity.dashFrame.setVisibility(View.INVISIBLE);
-                MainActivity.signupfram.setVisibility(View.VISIBLE);
+                MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
+                MainActivity.signupFrame.setVisibility(View.VISIBLE);
+                MainActivity.detailsfram.setVisibility(View.INVISIBLE);
+                MainActivity.secondRoundFrame.setVisibility(View.INVISIBLE);
+
 
             }
         });
@@ -87,7 +90,7 @@ private FirebaseAuth mAuth;
                         MainActivity.islogin=true;
                         MainActivity.loginFrame.setVisibility(View.INVISIBLE);
                         MainActivity.homFrame.setVisibility(View.VISIBLE);
-                        MainActivity.dashFrame.setVisibility(View.INVISIBLE);
+                        MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
                     }
                     else Toast.makeText(getActivity(), "login fail", Toast.LENGTH_SHORT).show();
                 }
@@ -109,7 +112,7 @@ private FirebaseAuth mAuth;
             MainActivity.islogin=true;
             MainActivity.loginFrame.setVisibility(View.INVISIBLE);
             MainActivity.homFrame.setVisibility(View.VISIBLE);
-            MainActivity.dashFrame.setVisibility(View.INVISIBLE);
+            MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
         }
     }
 }
