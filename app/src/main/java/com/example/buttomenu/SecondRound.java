@@ -134,26 +134,20 @@ public class SecondRound extends Fragment {
         // You can also add logic to stop the game, restart it, or show a dialog.
     }
     private void showHelp() {
-        if (isGameOver) return;  // Disable help button if the game is over
-
         if (helpCount == 0) {
-            // Randomly choose two unmatched cards with the same image
+            // Randomly choose two unmatched cards
             int firstHelpIndex = -1;
             int secondHelpIndex = -1;
 
-            // Find two unmatched cards with the same image
+            // Find two unmatched cards
             for (int i = 0; i < cards.length; i++) {
                 if (cards[i].getTag() == null) {
-                    for (int j = i + 1; j < cards.length; j++) {
-                        if (cards[j].getTag() == null && images[i] == images[j]) {
-                            firstHelpIndex = i;
-                            secondHelpIndex = j;
-                            break;
-                        }
+                    if (firstHelpIndex == -1) {
+                        firstHelpIndex = i;
+                    } else {
+                        secondHelpIndex = i;
+                        break;
                     }
-                }
-                if (firstHelpIndex != -1 && secondHelpIndex != -1) {
-                    break;
                 }
             }
 
