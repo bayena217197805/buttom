@@ -139,6 +139,7 @@ public class FirstRound extends Fragment {
                 MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
                 MainActivity.detailsfram.setVisibility(View.INVISIBLE);
                 MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
+                MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
             }, 2000);
         } else {
             Toast.makeText(getActivity(), "Time's up! You Lose!", Toast.LENGTH_SHORT).show();

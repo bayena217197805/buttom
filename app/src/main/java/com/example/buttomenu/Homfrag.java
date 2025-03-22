@@ -49,6 +49,7 @@ private Button playbutton;
                 MainActivity.firstRoundFrame.setVisibility(View.VISIBLE);
                 MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
                 MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
+                MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
             }
         });
         return view;

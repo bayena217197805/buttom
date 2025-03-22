@@ -58,6 +58,7 @@ private FirebaseAuth mAuth;
                 MainActivity.firstRoundFrame.setVisibility(View.INVISIBLE);
                 MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
                 MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
+                MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
 
 
             }

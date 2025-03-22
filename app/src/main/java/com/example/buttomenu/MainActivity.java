@@ -22,6 +22,7 @@ private SecondRound secondRoundfrag;
 private FirstRound firstRoundfrag;
 private ThirdRound thirdRoundfrag;
 private RoundFour roundFourfrag;
+private RoundFive roundFivefrag;
 private BottomNavigationView bottomNavigationView;
 public static FrameLayout homFrame;
 public static FrameLayout signupFrame;
@@ -32,6 +33,7 @@ public static FrameLayout secondRoundFrame;
 public static FrameLayout firstRoundFrame;
 public static FrameLayout  thirdRoundFrame;
 public static FrameLayout roundFourFrame;
+public static FrameLayout roundFiveFrame;
 public static boolean islogin=false;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -47,6 +49,7 @@ public static boolean islogin=false;
         firstRoundFrame=findViewById(R.id.firstRound_fram);
         thirdRoundFrame=findViewById(R.id.thirdRound_fram);
         roundFourFrame=findViewById(R.id.roundFour_fram);
+        roundFiveFrame=findViewById(R.id.roundFive_fram);
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         begin();
     }
@@ -61,6 +64,7 @@ public static boolean islogin=false;
         firstRoundfrag=new FirstRound();
         thirdRoundfrag=new ThirdRound();
         roundFourfrag=new RoundFour();
+        roundFivefrag=new RoundFive();
         getSupportFragmentManager().beginTransaction().replace(R.id.home_fram,homfrag).commit();
         getSupportFragmentManager().beginTransaction().replace(R.id.instructions_fram,instructionsfrag).commit();
         getSupportFragmentManager().beginTransaction().replace(R.id.login_fram,loginfrag).commit();
@@ -70,6 +74,8 @@ public static boolean islogin=false;
         getSupportFragmentManager().beginTransaction().replace(R.id.firstRound_fram,firstRoundfrag).commit();
         getSupportFragmentManager().beginTransaction().replace(R.id.thirdRound_fram,thirdRoundfrag).commit();
         getSupportFragmentManager().beginTransaction().replace(R.id.roundFour_fram,roundFourfrag).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.roundFive_fram,roundFivefrag).commit();
+
 
         instructionsFrame.setVisibility(View.INVISIBLE);
         homFrame.setVisibility(View.INVISIBLE);
@@ -79,6 +85,7 @@ public static boolean islogin=false;
         firstRoundFrame.setVisibility(View.INVISIBLE);
         thirdRoundFrame.setVisibility(View.INVISIBLE);
         roundFourFrame.setVisibility(View.INVISIBLE);
+        roundFiveFrame.setVisibility(View.INVISIBLE);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -92,6 +99,7 @@ public static boolean islogin=false;
                     firstRoundFrame.setVisibility(View.INVISIBLE);
                     thirdRoundFrame.setVisibility(View.INVISIBLE);
                     roundFourFrame.setVisibility(View.INVISIBLE);
+                    roundFiveFrame.setVisibility(View.INVISIBLE);
 
                 }
                 if(item.getItemId()==R.id.menuhome&&islogin){
@@ -104,6 +112,7 @@ public static boolean islogin=false;
                     firstRoundFrame.setVisibility(View.INVISIBLE);
                     thirdRoundFrame.setVisibility(View.INVISIBLE);
                     roundFourFrame.setVisibility(View.INVISIBLE);
+                    roundFiveFrame.setVisibility(View.INVISIBLE);
 
                 }
                 if(item.getItemId()==R.id.menuinstructions&&islogin){
@@ -116,6 +125,7 @@ public static boolean islogin=false;
                     firstRoundFrame.setVisibility(View.INVISIBLE);
                     thirdRoundFrame.setVisibility(View.INVISIBLE);
                     roundFourFrame.setVisibility(View.INVISIBLE);
+                    roundFiveFrame.setVisibility(View.INVISIBLE);
 
                 }
                 if(item.getItemId()==R.id.menu_details&&islogin){
@@ -128,6 +138,7 @@ public static boolean islogin=false;
                     firstRoundFrame.setVisibility(View.INVISIBLE);
                     thirdRoundFrame.setVisibility(View.INVISIBLE);
                     roundFourFrame.setVisibility(View.INVISIBLE);
+                    roundFiveFrame.setVisibility(View.INVISIBLE);
 
                 }
                 return true;
