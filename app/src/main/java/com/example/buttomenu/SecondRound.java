@@ -27,7 +27,7 @@ public class SecondRound extends Fragment {
     private int score = 0;
     private Handler handler = new Handler();
     // Timer variables
-    private int timeRemaining = 60;  // Time in seconds (30 seconds)
+    private int timeRemaining = 60;  // Time in seconds (60 seconds)
     private boolean isGameOver = false;
     private TextView timerText;  // To display the timer on the screen
     private int helpCount = 0;  // Counter to track if help button is pressed
@@ -134,40 +134,42 @@ public class SecondRound extends Fragment {
         // You can also add logic to stop the game, restart it, or show a dialog.
     }
     private void showHelp() {
-        if (helpCount == 0) {
-            // Randomly choose two unmatched cards
+        if (helpCount == 0) { // السماح بالمساعدة مرة واحدة فقط
             int firstHelpIndex = -1;
             int secondHelpIndex = -1;
 
-            // Find two unmatched cards
-            for (int i = 0; i < cards.length; i++) {
-                if (cards[i].getTag() == null) {
-                    if (firstHelpIndex == -1) {
-                        firstHelpIndex = i;
-                    } else {
-                        secondHelpIndex = i;
-                        break;
+            // البحث عن زوج متطابق غير مكشوف
+            for (int i = 0; i < images.length; i++) {
+                if (cards[i].getTag() == null) { // البطاقة غير مطابقة بعد
+                    for (int j = i + 1; j < images.length; j++) {
+                        if (cards[j].getTag() == null && images[i] == images[j]) { // وجدنا تطابقًا
+                            firstHelpIndex = i;
+                            secondHelpIndex = j;
+                            break;
+                        }
                     }
+                }
+                if (firstHelpIndex != -1 && secondHelpIndex != -1) {
+                    break; // وجدنا زوجًا متطابقًا، لا داعي للمتابعة
                 }
             }
 
+            // إذا وجدنا زوجًا متطابقًا، نقوم بإظهاره
             if (firstHelpIndex != -1 && secondHelpIndex != -1) {
-                // Show the two cards temporarily
                 cards[firstHelpIndex].setImageResource(images[firstHelpIndex]);
                 cards[secondHelpIndex].setImageResource(images[secondHelpIndex]);
-                helpIndexes[0] = firstHelpIndex;
-                helpIndexes[1] = secondHelpIndex;
 
-                // Hide them after 2 seconds
+                // إخفاء البطاقتين بعد ثانيتين
                 int finalFirstHelpIndex = firstHelpIndex;
                 int finalSecondHelpIndex = secondHelpIndex;
                 handler.postDelayed(() -> {
                     cards[finalFirstHelpIndex].setImageResource(R.drawable.backcardd);
                     cards[finalSecondHelpIndex].setImageResource(R.drawable.backcardd);
-                }, 2000);  // Hide after 2 seconds
-            }
+                }, 2000);
 
-            helpCount++;  // Ensure the help button only works once
+                helpCount++; // منع استخدام المساعدة أكثر من مرة
+            }
         }
     }
+
 }
