@@ -86,7 +86,7 @@ public class ThirdRound extends Fragment {
 
 
     private void handleCardClick(int index) {
-        if (isBusy || cards[index].getTag() != null) return;
+        if (isGameOver || isBusy || cards[index].getTag() != null) return;
 
         cards[index].setImageResource(images[index]);
         if (firstCard == 0) {
@@ -132,12 +132,28 @@ public class ThirdRound extends Fragment {
     }
     private void gameOver(boolean won) {
         isGameOver = true;
-        String message = won ? "You Win!" : "Time's up! You Lose!";
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-        // You can also add logic to stop the game, restart it, or show a dialog.
+        if (won) {
+            Toast.makeText(getActivity(), "You Win! Moving to the next round...", Toast.LENGTH_SHORT).show();
+
+            // تأخير بسيط لعرض رسالة الفوز قبل الانتقال
+            handler.postDelayed(() -> {
+                MainActivity.firstRoundFrame.setVisibility(View.INVISIBLE);
+                MainActivity.secondRoundFrame.setVisibility(View.INVISIBLE);
+                MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
+                MainActivity.signupFrame.setVisibility(View.INVISIBLE);
+                MainActivity.loginFrame.setVisibility(View.INVISIBLE);
+                MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
+                MainActivity.detailsfram.setVisibility(View.INVISIBLE);
+                MainActivity.roundFourFrame.setVisibility(View.VISIBLE);
+                MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
+            }, 2000);
+        } else {
+            Toast.makeText(getActivity(), "Time's up! You Lose!", Toast.LENGTH_SHORT).show();
+        }
     }
     private void showHelp() {
-        if (helpCount == 0) { // السماح بالمساعدة مرة واحدة فقط
+        // منع استخدام المساعدة إذا كان هناك بطاقة واحدة مكشوفة فقط
+        if (helpCount == 0 && firstCard == 0) { // السماح بالمساعدة فقط إذا لم يتم كشف بطاقة بالفعل
             int firstHelpIndex = -1;
             int secondHelpIndex = -1;
 

@@ -78,7 +78,7 @@ public class FirstRound extends Fragment {
     }
 
     private void handleCardClick(int index) {
-        if (isBusy || cards[index].getTag() != null) return;
+        if (isGameOver || isBusy || cards[index].getTag() != null) return;
 
         cards[index].setImageResource(images[index]);
         if (firstCard == 0) {
@@ -148,8 +148,10 @@ public class FirstRound extends Fragment {
 
 
     private void showHelp() {
-        if (helpCount == 0) {
-            int firstHelpIndex = -1, secondHelpIndex = -1;
+        // منع استخدام المساعدة إذا كان هناك بطاقة واحدة مكشوفة فقط
+        if (helpCount == 0 && firstCard == 0) { // السماح بالمساعدة فقط إذا لم يتم كشف بطاقة بالفعل
+            int firstHelpIndex = -1;
+            int secondHelpIndex = -1;
 
             // البحث عن زوج متطابق غير مكشوف
             for (int i = 0; i < cards.length; i++) {
