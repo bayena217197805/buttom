@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ public class FirstRound extends Fragment {
     private boolean isGameOver = false;
     private TextView timerText;
     private int helpCount = 0;
+    private Button buttonstart;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,16 +47,12 @@ public class FirstRound extends Fragment {
         Collections.shuffle(Arrays.asList(images));  // خلط الصور
 
         timerText = view.findViewById(R.id.timerText);
+        buttonstart=view.findViewById(R.id.buttonstart);
         ImageView helpButton = view.findViewById(R.id.help_button);
         helpButton.setOnClickListener(v -> showHelp());
-
-        // إظهار البطاقات لمدة 5 ثوانٍ قبل إخفائها
-        for (int i = 0; i < cards.length; i++) {
-            cards[i].setImageResource(images[i]);
-        }
-        handler.postDelayed(this::hideCards, 5000);
-
-        // تشغيل العداد التنازلي
+buttonstart.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -67,6 +65,10 @@ public class FirstRound extends Fragment {
                 }
             }
         }, 1000);
+    }
+});
+
+
 
         // ضبط مستمع النقر لكل بطاقة
         for (int i = 0; i < cards.length; i++) {

@@ -34,16 +34,29 @@
                 android:layout_marginLeft="20dp"
                 android:src="@drawable/light1" />
         </LinearLayout>
-        <TextView
-            android:id="@+id/timerText"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="160dp"
-            android:layout_marginTop="10dp"
-            android:text="Time: 60s"
-            android:textSize="20sp" />
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start"
+                android:id="@+id/buttonstart"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:id="@+id/timerText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:text="Time: 180s"
+                android:textSize="20sp" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"

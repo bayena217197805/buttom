@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,9 +26,10 @@ public class SecondRound extends Fragment {
     private int firstIndex, secondIndex;
     private boolean isBusy = false;
     private int score = 0;
+    private Button buttonstart;
     private Handler handler = new Handler();
     // Timer variables
-    private int timeRemaining = 60;  // Time in seconds (60 seconds)
+    private int timeRemaining = 120;  // Time in seconds (60 seconds)
     private boolean isGameOver = false;
     private TextView timerText;  // To display the timer on the screen
     private int helpCount = 0;  // Counter to track if help button is pressed
@@ -49,29 +51,28 @@ public class SecondRound extends Fragment {
 
         // Shuffle images
         Collections.shuffle(Arrays.asList(images));
+        buttonstart=view.findViewById(R.id.buttonstart);
         timerText = view.findViewById(R.id.timerText);
         ImageView helpButton = view.findViewById(R.id.help_button);  // Assuming you have a button with this ID
         helpButton.setOnClickListener(v -> showHelp());
 
-        // Show cards for 5 seconds before flipping back
-        for (int i = 0; i < cards.length; i++) {
-            cards[i].setImageResource(images[i]);
-        }
-        handler.postDelayed(this::hideCards, 10000);
-        handler.postDelayed(new Runnable() {
+        buttonstart.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                if (timeRemaining > 0 && !isGameOver) {
-                    timeRemaining--;
-                    timerText.setText("Time: " + timeRemaining + "s");
-                    handler.postDelayed(this, 1000);  // Update every second
-                } else if (timeRemaining == 0 && !isGameOver) {
-                    // Game over: time is up and not all cards are matched
-                    gameOver(false);
-                }
+            public void onClick(View v) {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (timeRemaining > 0 && !isGameOver) {
+                            timeRemaining--;
+                            timerText.setText("Time: " + timeRemaining + "s");
+                            handler.postDelayed(this, 1000);
+                        } else if (timeRemaining == 0 && !isGameOver) {
+                            gameOver(false);
+                        }
+                    }
+                }, 1000);
             }
-        }, 1000);
-
+        });
         // Set click listeners
         for (int i = 0; i < cards.length; i++) {
             final int index = i;
