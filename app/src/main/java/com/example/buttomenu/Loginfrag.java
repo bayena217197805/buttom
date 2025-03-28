@@ -79,6 +79,7 @@ private FirebaseAuth mAuth;
         });
         return view;
     }
+    @SuppressLint("SuspiciousIndentation")
     private void checkEmailpass(){
         String email,password;
         email=et_email.getText().toString();

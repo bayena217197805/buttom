@@ -11,8 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class FirstRound extends Fragment {
 
@@ -24,11 +27,12 @@ public class FirstRound extends Fragment {
     private int firstCard, secondCard;
     private int firstIndex, secondIndex;
     private boolean isBusy = false;
-    private int score = 0;
+
     private Handler handler = new Handler();
     private int timeRemaining = 60;  // 60 ثانية فقط للمرحلة الأولى
     private boolean isGameOver = false;
     private TextView timerText;
+    private TextView scoreText;
     private int helpCount = 0;
     private Button buttonstart;
 
@@ -44,15 +48,34 @@ public class FirstRound extends Fragment {
                 view.findViewById(R.id.r1p7), view.findViewById(R.id.r1p8)
         };
 
-        Collections.shuffle(Arrays.asList(images));  // خلط الصور
+        // تعطيل النقر على البطاقات في البداية
+        for (ImageView card : cards) {
+            card.setEnabled(false);  // تعطيل النقر على البطاقات
+        }
+
+        List<Integer> tempImages = new ArrayList<>();
+        for (int image : images) {
+            tempImages.add(image);
+        }
+        Collections.shuffle(tempImages);
+        for (int i = 0; i < images.length; i++) {
+            images[i] = tempImages.get(i);
+        }
 
         timerText = view.findViewById(R.id.timerText);
         buttonstart=view.findViewById(R.id.buttonstart);
+        scoreText = view.findViewById(R.id.scoreText);
+        scoreText.setText("Score: " + MainActivity.score); // ضبط القيمة الأولية
         ImageView helpButton = view.findViewById(R.id.help_button);
+        helpButton.setEnabled(false);
         helpButton.setOnClickListener(v -> showHelp());
 buttonstart.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
+        for (ImageView card : cards) {
+            card.setEnabled(true);  // تمكين النقر على البطاقات بعد الضغط على Start
+        }
+        helpButton.setEnabled(true);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -98,7 +121,7 @@ buttonstart.setOnClickListener(new View.OnClickListener() {
         if (firstCard == secondCard) {
             cards[firstIndex].setTag("matched");
             cards[secondIndex].setTag("matched");
-            score += 10;
+
         } else {
             cards[firstIndex].setImageResource(R.drawable.backcardd);
             cards[secondIndex].setImageResource(R.drawable.backcardd);
@@ -129,8 +152,17 @@ buttonstart.setOnClickListener(new View.OnClickListener() {
     private void gameOver(boolean won) {
         isGameOver = true;
         if (won) {
-            Toast.makeText(getActivity(), "You Win! Moving to the next round...", Toast.LENGTH_SHORT).show();
+            if (timeRemaining > 30) {
+                MainActivity.score += 20;  // إذا حلها في أقل من نصف الوقت
+            } else {
+                MainActivity.score += 10;  // إذا حلها بعد نصف الوقت ولكن قبل انتهائه
+            }
 
+// خصم النقاط إذا استخدم المساعدة
+            MainActivity.score -= (helpCount * 5);
+            if (MainActivity.score < 0) MainActivity.score = 0; // لا نسمح بأن يكون الـ score سالبًا
+            Toast.makeText(getActivity(), "You Win! Moving to the next round...", Toast.LENGTH_SHORT).show();
+            scoreText.setText("Score: " + MainActivity.score); // ضبط القيمة الأولية
             // تأخير بسيط لعرض رسالة الفوز قبل الانتقال
             handler.postDelayed(() -> {
                 MainActivity.firstRoundFrame.setVisibility(View.INVISIBLE);
@@ -138,6 +170,7 @@ buttonstart.setOnClickListener(new View.OnClickListener() {
                 MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
                 MainActivity.signupFrame.setVisibility(View.INVISIBLE);
                 MainActivity.loginFrame.setVisibility(View.INVISIBLE);
+                MainActivity.homFrame.setVisibility(View.INVISIBLE);
                 MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
                 MainActivity.detailsfram.setVisibility(View.INVISIBLE);
                 MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);

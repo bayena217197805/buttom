@@ -35,6 +35,7 @@ public static FrameLayout  thirdRoundFrame;
 public static FrameLayout roundFourFrame;
 public static FrameLayout roundFiveFrame;
 public static boolean islogin=false;
+public static int score=0;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

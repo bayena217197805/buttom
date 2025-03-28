@@ -1,5 +1,6 @@
 package com.example.buttomenu;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -11,8 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class SecondRound extends Fragment {
 
@@ -25,8 +29,9 @@ public class SecondRound extends Fragment {
     private int firstCard, secondCard;
     private int firstIndex, secondIndex;
     private boolean isBusy = false;
-    private int score = 0;
+
     private Button buttonstart;
+    private TextView scoreText;
     private Handler handler = new Handler();
     // Timer variables
     private int timeRemaining = 120;  // Time in seconds (60 seconds)
@@ -36,6 +41,7 @@ public class SecondRound extends Fragment {
     private int[] helpIndexes = new int[2]; // Array to store the two cards
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,17 +54,34 @@ public class SecondRound extends Fragment {
                 view.findViewById(R.id.r2p7), view.findViewById(R.id.r2p8), view.findViewById(R.id.r2p9),
                 view.findViewById(R.id.r2p10), view.findViewById(R.id.r2p11), view.findViewById(R.id.r2p12)
         };
+        // تعطيل النقر على البطاقات في البداية
+        for (ImageView card : cards) {
+            card.setEnabled(false);  // تعطيل النقر على البطاقات
+        }
 
-        // Shuffle images
-        Collections.shuffle(Arrays.asList(images));
+        List<Integer> tempImages = new ArrayList<>();
+        for (int image : images) {
+            tempImages.add(image);
+        }
+        Collections.shuffle(tempImages);
+        for (int i = 0; i < images.length; i++) {
+            images[i] = tempImages.get(i);
+        }
         buttonstart=view.findViewById(R.id.buttonstart);
+        scoreText = view.findViewById(R.id.scoreText);
+        scoreText.setText("Score: " + MainActivity.score); // ضبط القيمة الأولية
         timerText = view.findViewById(R.id.timerText);
         ImageView helpButton = view.findViewById(R.id.help_button);  // Assuming you have a button with this ID
+        helpButton.setEnabled(false);
         helpButton.setOnClickListener(v -> showHelp());
 
         buttonstart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for (ImageView card : cards) {
+                    card.setEnabled(true);  // تمكين النقر على البطاقات بعد الضغط على Start
+                }
+                helpButton.setEnabled(true);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -102,7 +125,7 @@ public class SecondRound extends Fragment {
         if (firstCard == secondCard) {
             cards[firstIndex].setTag("matched");
             cards[secondIndex].setTag("matched");
-            score += 10;
+
         } else {
             cards[firstIndex].setImageResource(R.drawable.backcardd);
             cards[secondIndex].setImageResource(R.drawable.backcardd);
@@ -131,6 +154,16 @@ public class SecondRound extends Fragment {
     private void gameOver(boolean won) {
         isGameOver = true;
         if (won) {
+            if (timeRemaining > 60) {
+                MainActivity.score += 20;  // إذا حلها في أقل من نصف الوقت
+            } else {
+                MainActivity.score += 10;  // إذا حلها بعد نصف الوقت ولكن قبل انتهائه
+            }
+
+// خصم النقاط إذا استخدم المساعدة
+            MainActivity.score -= (helpCount * 5);
+            if (MainActivity.score < 0) MainActivity.score = 0; // لا نسمح بأن يكون الـ score سالبًا
+            scoreText.setText("Score: " + MainActivity.score);
             Toast.makeText(getActivity(), "You Win! Moving to the next round...", Toast.LENGTH_SHORT).show();
 
             // تأخير بسيط لعرض رسالة الفوز قبل الانتقال
@@ -142,6 +175,7 @@ public class SecondRound extends Fragment {
                 MainActivity.loginFrame.setVisibility(View.INVISIBLE);
                 MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
                 MainActivity.detailsfram.setVisibility(View.INVISIBLE);
+                MainActivity.homFrame.setVisibility(View.INVISIBLE);
                 MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
                 MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
             }, 2000);

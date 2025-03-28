@@ -12,8 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class RoundFour extends Fragment {
 
@@ -28,7 +31,7 @@ public class RoundFour extends Fragment {
     private int firstCard, secondCard;
     private int firstIndex, secondIndex;
     private boolean isBusy = false;
-    private int score = 0;
+
     private Handler handler = new Handler();
     // Timer variables
     private int timeRemaining = 240;  // Time in seconds (60 seconds)
@@ -55,17 +58,32 @@ public class RoundFour extends Fragment {
                 , view.findViewById(R.id.r4p16), view.findViewById(R.id.r4p17), view.findViewById(R.id.r4p18),
                 view.findViewById(R.id.r4p19), view.findViewById(R.id.r4p20)
         };
+        // تعطيل النقر على البطاقات في البداية
+        for (ImageView card : cards) {
+            card.setEnabled(false);  // تعطيل النقر على البطاقات
+        }
 
-        // Shuffle images
-        Collections.shuffle(Arrays.asList(images));
+        List<Integer> tempImages = new ArrayList<>();
+        for (int image : images) {
+            tempImages.add(image);
+        }
+        Collections.shuffle(tempImages);
+        for (int i = 0; i < images.length; i++) {
+            images[i] = tempImages.get(i);
+        }
         timerText = view.findViewById(R.id.timerText);
         buttonstart=view.findViewById(R.id.buttonstart);
         ImageView helpButton = view.findViewById(R.id.help_button);  // Assuming you have a button with this ID
+        helpButton.setEnabled(false);
         helpButton.setOnClickListener(v -> showHelp());
 
         buttonstart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for (ImageView card : cards) {
+                    card.setEnabled(true);  // تمكين النقر على البطاقات بعد الضغط على Start
+                }
+                helpButton.setEnabled(true);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -109,7 +127,7 @@ public class RoundFour extends Fragment {
         if (firstCard == secondCard) {
             cards[firstIndex].setTag("matched");
             cards[secondIndex].setTag("matched");
-            score += 10;
+
         } else {
             cards[firstIndex].setImageResource(R.drawable.backcardd);
             cards[secondIndex].setImageResource(R.drawable.backcardd);
@@ -150,6 +168,7 @@ public class RoundFour extends Fragment {
                 MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
                 MainActivity.detailsfram.setVisibility(View.INVISIBLE);
                 MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
+                MainActivity.homFrame.setVisibility(View.INVISIBLE);
                 MainActivity.roundFiveFrame.setVisibility(View.VISIBLE);
             }, 2000);
         } else {
