@@ -96,6 +96,13 @@ private FirebaseAuth mAuth;
                         MainActivity.loginFrame.setVisibility(View.INVISIBLE);
                         MainActivity.homFrame.setVisibility(View.VISIBLE);
                         MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
+                        MainActivity.detailsfram.setVisibility(View.INVISIBLE);
+                        MainActivity.firstRoundFrame.setVisibility(View.INVISIBLE);
+                        MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
+                        MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
+                        MainActivity.secondRoundFrame.setVisibility(View.INVISIBLE);
+                        MainActivity.signupFrame.setVisibility(View.INVISIBLE);
+                        MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
                     }
                     else Toast.makeText(getActivity(), "login fail", Toast.LENGTH_SHORT).show();
                 }
@@ -118,6 +125,13 @@ private FirebaseAuth mAuth;
             MainActivity.loginFrame.setVisibility(View.INVISIBLE);
             MainActivity.homFrame.setVisibility(View.VISIBLE);
             MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
+            MainActivity.detailsfram.setVisibility(View.INVISIBLE);
+            MainActivity.firstRoundFrame.setVisibility(View.INVISIBLE);
+            MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
+            MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
+            MainActivity.secondRoundFrame.setVisibility(View.INVISIBLE);
+            MainActivity.signupFrame.setVisibility(View.INVISIBLE);
+            MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
         }
     }
 }
