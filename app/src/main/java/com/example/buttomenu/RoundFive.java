@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -40,6 +43,7 @@ public class RoundFive extends Fragment {
     private int timeRemaining = 300;  // Time in seconds (60 seconds)
     private boolean isGameOver = false;
     private Button buttonstart;
+    private TextView scoreText;
     private TextView timerText;  // To display the timer on the screen
     private int helpCount = 0;  // Counter to track if help button is pressed
     private int[] helpIndexes = new int[2]; // Array to store the two cards
@@ -80,6 +84,8 @@ public class RoundFive extends Fragment {
         }
         timerText = view.findViewById(R.id.timerText);
         buttonstart=view.findViewById(R.id.buttonstart);
+        scoreText = view.findViewById(R.id.scoreText);
+        scoreText.setText("Score: " + MainActivity.score); // ضبط القيمة الأولية
         ImageView helpButton = view.findViewById(R.id.help_button);  // Assuming you have a button with this ID
         helpButton.setEnabled(false);
         helpButton.setOnClickListener(v -> showHelp());
@@ -162,9 +168,31 @@ public class RoundFive extends Fragment {
     }
     private void gameOver(boolean won) {
         isGameOver = true;
-        String message = won ? "You Win!" : "Time's up! You Lose!";
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-        // You can also add logic to stop the game, restart it, or show a dialog.
+        if (won) {
+            if (timeRemaining > 30) {
+                MainActivity.score += 20;  // إذا حلها في أقل من نصف الوقت
+            } else {
+                MainActivity.score += 10;  // إذا حلها بعد نصف الوقت ولكن قبل انتهائه
+            }
+
+// خصم النقاط إذا استخدم المساعدة
+            MainActivity.score -= (helpCount * 5);
+            if (MainActivity.score < 0) MainActivity.score = 0; // لا نسمح بأن يكون الـ score سالبًا
+            Toast.makeText(getActivity(), "You Win!", Toast.LENGTH_SHORT).show();
+            scoreText.setText("Score: " + MainActivity.score); // ضبط القيمة الأولية
+            String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+            FirebaseFirestore.getInstance().collection("clinet")
+                    .whereEqualTo("Email", userEmail)
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            String docId = queryDocumentSnapshots.getDocuments().get(0).getId();
+                            FirebaseFirestore.getInstance().collection("clinet")
+                                    .document(docId)
+                                    .update("Score", MainActivity.score);
+                        }
+                    });
+    }
     }
     private void showHelp() {
         // منع استخدام المساعدة إذا كان هناك بطاقة واحدة مكشوفة فقط

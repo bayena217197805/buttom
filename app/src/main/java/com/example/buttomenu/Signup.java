@@ -141,6 +141,7 @@ public class Signup extends Fragment {
         userMap.put("UserName", userName.getText().toString().trim());
         userMap.put("Phone", phone.getText().toString().trim());
         userMap.put("Score", 0);
+        userMap.put( "Round",1);
 
         db.collection("clinet").document(userName.getText().toString().trim()).set(userMap);
         Log.d("TAG", "add user to firebasee");

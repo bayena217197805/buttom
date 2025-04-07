@@ -166,6 +166,7 @@ buttonstart.setOnClickListener(new View.OnClickListener() {
             if (MainActivity.score < 0) MainActivity.score = 0; // لا نسمح بأن يكون الـ score سالبًا
             Toast.makeText(getActivity(), "You Win! Moving to the next round...", Toast.LENGTH_SHORT).show();
             scoreText.setText("Score: " + MainActivity.score); // ضبط القيمة الأولية
+            MainActivity.currentRound = 2;
             String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
             FirebaseFirestore.getInstance().collection("clinet")
                     .whereEqualTo("Email", userEmail)
@@ -175,7 +176,7 @@ buttonstart.setOnClickListener(new View.OnClickListener() {
                             String docId = queryDocumentSnapshots.getDocuments().get(0).getId();
                             FirebaseFirestore.getInstance().collection("clinet")
                                     .document(docId)
-                                    .update("Score", MainActivity.score);
+                                    .update("Score", MainActivity.score,"Round", MainActivity.currentRound);
                         }
                     });
 

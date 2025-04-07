@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class Homfrag extends Fragment {
@@ -40,16 +41,90 @@ private Button playbutton;
         playbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.loginFrame.setVisibility(View.INVISIBLE);
-                MainActivity.homFrame.setVisibility(View.INVISIBLE);
-                MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
-                MainActivity.detailsfram.setVisibility(View.INVISIBLE);
-                MainActivity.signupFrame.setVisibility(View.INVISIBLE);
-                MainActivity.secondRoundFrame.setVisibility(View.INVISIBLE);
-                MainActivity.firstRoundFrame.setVisibility(View.VISIBLE);
-                MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
-                MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
-                MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
+                String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
+                FirebaseFirestore.getInstance().collection("clinet")
+                        .whereEqualTo("Email", email)
+                        .get()
+                        .addOnSuccessListener(querySnapshot -> {
+                            if (!querySnapshot.isEmpty()) {
+
+                                Object roundValue = querySnapshot.getDocuments().get(0).get("CurrentRound");
+                                if (roundValue != null) {
+                                    MainActivity.currentRound = Integer.parseInt(roundValue.toString());
+                                }
+
+
+
+                                // وجّهه حسب الجولة الحالية
+                                switch (MainActivity.currentRound) {
+                                    case 1:
+                                        MainActivity.firstRoundFrame.setVisibility(View.VISIBLE);
+                                        MainActivity.loginFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.homFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.detailsfram.setVisibility(View.INVISIBLE);
+                                        MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.secondRoundFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.signupFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
+                                        break;
+                                    case 2:
+                                        MainActivity.secondRoundFrame.setVisibility(View.VISIBLE);
+                                        MainActivity.firstRoundFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.loginFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.homFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.detailsfram.setVisibility(View.INVISIBLE);
+                                        MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
+
+                                        MainActivity.signupFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
+                                        break;
+                                    case 3:
+                                        MainActivity.thirdRoundFrame.setVisibility(View.VISIBLE);
+                                        MainActivity.secondRoundFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.firstRoundFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.loginFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.homFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.detailsfram.setVisibility(View.INVISIBLE);
+                                        MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.signupFrame.setVisibility(View.INVISIBLE);
+
+                                        break;
+                                    case 4:
+                                        MainActivity.roundFourFrame.setVisibility(View.VISIBLE);
+                                        MainActivity.secondRoundFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.firstRoundFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.loginFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.homFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.detailsfram.setVisibility(View.INVISIBLE);
+                                        MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.signupFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
+                                        break;
+                                    case 5:
+                                        MainActivity.roundFiveFrame.setVisibility(View.VISIBLE);
+                                        MainActivity.secondRoundFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.firstRoundFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.loginFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.homFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.detailsfram.setVisibility(View.INVISIBLE);
+                                        MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.signupFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
+                                        break;
+                                    default:
+                                        MainActivity.firstRoundFrame.setVisibility(View.VISIBLE);
+                                }
+                            }
+                        });
             }
         });
         return view;

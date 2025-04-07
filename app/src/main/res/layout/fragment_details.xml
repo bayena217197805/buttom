@@ -129,13 +129,7 @@
                 android:orientation="horizontal"
                 android:padding="16dp"
                 android:gravity="center_vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Level:"
-                    android:textSize="20sp"
-                    android:textColor="#ffffff"
-                    android:fontFamily="sans-serif-medium"/>
+
                 <TextView
                     android:id="@+id/level_value"
                     android:layout_width="wrap_content"

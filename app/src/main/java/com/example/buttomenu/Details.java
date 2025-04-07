@@ -19,6 +19,7 @@ public class Details extends Fragment {
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private TextView scoreText;
+    private TextView leveltext;
 
     public Details() {
         // Required empty public constructor
@@ -35,7 +36,7 @@ public class Details extends Fragment {
         scoreText = view.findViewById(R.id.score_value);
         userNameText = view.findViewById(R.id.username_value);
         phoneText = view.findViewById(R.id.phone_value);
-
+        leveltext=view.findViewById(R.id.level_value);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
@@ -50,28 +51,35 @@ public class Details extends Fragment {
 
     private void loadUserData() {
         if (mAuth.getCurrentUser() == null) {
-        Toast.makeText(getActivity(), "لم يتم تسجيل الدخول", Toast.LENGTH_SHORT).show();
-        return;
-    }
+            Toast.makeText(getActivity(), "لم يتم تسجيل الدخول", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         String email = mAuth.getCurrentUser().getEmail();
 
         db.collection("clinet")
                 .whereEqualTo("Email", email)
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    if (!queryDocumentSnapshots.isEmpty()) {
+                .addSnapshotListener((queryDocumentSnapshots, e) -> {
+                    if (e != null) {
+                        
+                        return;
+                    }
+
+                    if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
                         Map<String, Object> data = queryDocumentSnapshots.getDocuments().get(0).getData();
 
                         nameText.setText("Name: " + data.get("Name"));
                         scoreText.setText("Score: " + data.get("Score"));
                         userNameText.setText("UserName: " + data.get("UserName"));
                         phoneText.setText("Phone: " + data.get("Phone"));
+                        Object roundObj = data.get("Round");
+                        if (roundObj != null) {
+                            MainActivity.currentRound = Integer.parseInt(roundObj.toString());
+                            leveltext.setText("Round:"+data.get("Round"));
+                        }
                     } else {
                         Toast.makeText(getActivity(), "لا يوجد بيانات للمستخدم", Toast.LENGTH_SHORT).show();
                     }
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(getActivity(), "حدث خطأ أثناء تحميل البيانات", Toast.LENGTH_SHORT).show();
                 });
     }
 }

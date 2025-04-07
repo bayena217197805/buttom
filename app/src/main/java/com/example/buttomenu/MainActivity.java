@@ -11,6 +11,10 @@ import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 private Homfrag homfrag;
@@ -36,6 +40,7 @@ public static FrameLayout roundFourFrame;
 public static FrameLayout roundFiveFrame;
 public static boolean islogin=false;
 public static int score=0;
+public static int currentRound = 1;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,31 @@ public static int score=0;
         roundFourFrame=findViewById(R.id.roundFour_fram);
         roundFiveFrame=findViewById(R.id.roundFive_fram);
         bottomNavigationView=findViewById(R.id.bottom_navigation);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null) {
+            String userEmail = mAuth.getCurrentUser().getEmail();
+
+            FirebaseFirestore.getInstance().collection("clinet")
+                    .whereEqualTo("Email", userEmail)
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            Map<String, Object> data = queryDocumentSnapshots.getDocuments().get(0).getData();
+
+                            Object scoreObj = data.get("Score");
+                            if (scoreObj != null) {
+                                MainActivity.score = Integer.parseInt(scoreObj.toString());
+                            }
+
+
+
+
+                        }
+                    });
+        } else {
+            // المستخدم مش مسجل، عرض واجهة تسجيل الدخول
+            loginFrame.setVisibility(View.VISIBLE);
+        }
         begin();
     }
 
