@@ -8,7 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,6 +22,7 @@ public class Homfrag extends Fragment {
 
 private FloatingActionButton btnlogout;
 private Button playbutton;
+private TextView textView;
     public Homfrag() {
         // Required empty public constructor
     }
@@ -32,6 +36,9 @@ private Button playbutton;
         View view= inflater.inflate(R.layout.fragment_homfrag, container, false);
         btnlogout=view.findViewById(R.id.btn_logout);
         playbutton=view.findViewById(R.id.playbutton);
+        textView=view.findViewById(R.id.text);
+        Animation blinkAnimation= AnimationUtils.loadAnimation(getContext(),R.anim.blink);
+        textView.startAnimation(blinkAnimation);
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

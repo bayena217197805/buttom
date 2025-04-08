@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -151,6 +153,7 @@ buttonstart.setOnClickListener(new View.OnClickListener() {
             card.setImageResource(R.drawable.backcardd);
         }
     }
+
 
     private void gameOver(boolean won) {
         isGameOver = true;

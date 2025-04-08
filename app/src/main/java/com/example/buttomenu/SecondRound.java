@@ -167,7 +167,7 @@ public class SecondRound extends Fragment {
             MainActivity.score -= (helpCount * 5);
             if (MainActivity.score < 0) MainActivity.score = 0; // لا نسمح بأن يكون الـ score سالبًا
             Toast.makeText(getActivity(), "You Win! Moving to the next round...", Toast.LENGTH_SHORT).show();
-            scoreText.setText("Score: " + MainActivity.score); // ضبط القيمة الأولية
+
             MainActivity.currentRound = 3;
             String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
             FirebaseFirestore.getInstance().collection("clinet")
@@ -181,6 +181,7 @@ public class SecondRound extends Fragment {
                                     .update("Score", MainActivity.score,"Round", MainActivity.currentRound);
                         }
                     });
+            scoreText.setText("Score: " + MainActivity.score); // ضبط القيمة الأولية
 
             // تأخير بسيط لعرض رسالة الفوز قبل الانتقال
             handler.postDelayed(() -> {
