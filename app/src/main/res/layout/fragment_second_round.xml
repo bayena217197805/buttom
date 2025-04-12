@@ -16,18 +16,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Score:"
-                android:id="@+id/scoreText"
-                android:textSize="30dp" />
+
 
             <ImageView
                 android:id="@+id/em1"
                 android:layout_width="136dp"
                 android:layout_height="123dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginRight="110dp"
                 android:layout_marginTop="30dp"
                 android:src="@drawable/round2p2" />
 
@@ -35,20 +30,21 @@
                 android:id="@+id/help_button"
                 android:layout_width="150dp"
                 android:layout_height="70dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="0dp"
                 android:src="@drawable/light1" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="70dp"
             android:orientation="horizontal">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Start"
                 android:id="@+id/buttonstart"
-                android:layout_marginLeft="50dp"
+
                 android:layout_marginTop="5dp"/>
             <TextView
                 android:id="@+id/timerText"
@@ -56,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
                 android:text="Time: 120s"
                 android:textSize="20sp" />
@@ -66,7 +62,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
+            android:layout_marginRight="40dp"
             android:layout_marginTop="40dp"
             android:orientation="horizontal">
 
@@ -96,7 +92,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
+            android:layout_marginRight="40dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -125,7 +121,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
+            android:layout_marginRight="40dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -155,7 +151,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
+            android:layout_marginRight="40dp"
             android:orientation="horizontal">
 
             <ImageView

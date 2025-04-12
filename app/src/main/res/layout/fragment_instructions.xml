@@ -92,6 +92,15 @@
                     android:textColor="#000"
                     android:padding="8dp"/>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="4. Using the help button will subtract **5 points** from your earned score."
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:padding="8dp"/>
+
+
 
             </LinearLayout>
 

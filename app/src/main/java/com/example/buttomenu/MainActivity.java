@@ -2,8 +2,12 @@ package com.example.buttomenu;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,6 +61,12 @@ public static int currentRound = 1;
         roundFourFrame=findViewById(R.id.roundFour_fram);
         roundFiveFrame=findViewById(R.id.roundFive_fram);
         bottomNavigationView=findViewById(R.id.bottom_navigation);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1);
+            }
+        }
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null) {
             String userEmail = mAuth.getCurrentUser().getEmail();

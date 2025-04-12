@@ -1,9 +1,13 @@
 package com.example.buttomenu;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -136,9 +140,41 @@ private TextView textView;
         });
         return view;
     }
+
     private void logout(){
         FirebaseAuth.getInstance().signOut();
         MainActivity.islogin=false;
+
+        Fragment signupFragment = new Signup();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.signup_fram, signupFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+        Fragment firstRoundFragment = new FirstRound();
+        FragmentTransaction transaction1 = getFragmentManager().beginTransaction();
+        transaction1.replace(R.id.firstRound_fram, firstRoundFragment); // استبدال الـ Fragment الحالي بـ FirstRound
+
+        transaction1.commit();
+        Fragment secondroundFragment = new SecondRound();
+        FragmentTransaction transaction2 = getFragmentManager().beginTransaction();
+        transaction2.replace(R.id.secondRound_fram, secondroundFragment); // استبدال الـ Fragment الحالي بـ FirstRound
+
+        transaction2.commit();
+        Fragment thirdroundFragment = new ThirdRound();
+        FragmentTransaction transaction3 = getFragmentManager().beginTransaction();
+        transaction3.replace(R.id.thirdRound_fram, thirdroundFragment); // استبدال الـ Fragment الحالي بـ FirstRound
+
+        transaction3.commit();
+        Fragment fourthroundFragment = new RoundFour();
+        FragmentTransaction transaction4 = getFragmentManager().beginTransaction();
+        transaction4.replace(R.id.roundFour_fram, fourthroundFragment); // استبدال الـ Fragment الحالي بـ FirstRound
+
+        transaction4.commit();
+        Fragment fifthroundFragment = new RoundFive();
+        FragmentTransaction transaction5 = getFragmentManager().beginTransaction();
+        transaction5.replace(R.id.roundFive_fram, fifthroundFragment); // استبدال الـ Fragment الحالي بـ FirstRound
+
+        transaction5.commit();
         MainActivity.loginFrame.setVisibility(View.VISIBLE);
         MainActivity.homFrame.setVisibility(View.INVISIBLE);
         MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);

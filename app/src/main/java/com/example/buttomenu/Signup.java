@@ -45,6 +45,13 @@ public class Signup extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        userName.setText("");
+        name.setText("");
+        phone.setText("");
+        email.setText("");
+        password.setText("");
+        confirmPassword.setText("");
+
 
         signup.setOnClickListener(v -> {
             // التحقق من الحقول الفارغة
@@ -128,6 +135,16 @@ public class Signup extends Fragment {
                         FirebaseUser user = mAuth.getCurrentUser();
                         addUserToFirestore(user);
                         Toast.makeText(getActivity(), "تم التسجيل بنجاح", Toast.LENGTH_SHORT).show();
+                        MainActivity.loginFrame.setVisibility(View.VISIBLE);
+                        MainActivity.homFrame.setVisibility(View.INVISIBLE);
+                        MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
+                        MainActivity.detailsfram.setVisibility(View.INVISIBLE);
+                        MainActivity.firstRoundFrame.setVisibility(View.INVISIBLE);
+                        MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
+                        MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
+                        MainActivity.secondRoundFrame.setVisibility(View.INVISIBLE);
+                        MainActivity.signupFrame.setVisibility(View.INVISIBLE);
+                        MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
                     } else {
                         Toast.makeText(getActivity(), "فشل التسجيل: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }

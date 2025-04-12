@@ -1,6 +1,11 @@
 package com.example.buttomenu;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -11,7 +16,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,7 +40,7 @@ public class ThirdRound extends Fragment {
     };
     private int firstCard, secondCard;
     private int firstIndex, secondIndex;
-    private TextView scoreText;
+
     private boolean isBusy = false;
 
     private Handler handler = new Handler();
@@ -73,11 +81,24 @@ public class ThirdRound extends Fragment {
         for (int i = 0; i < images.length; i++) {
             images[i] = tempImages.get(i);
         }
+        hideCards();
+
         timerText = view.findViewById(R.id.timerText);
         buttonstart=view.findViewById(R.id.buttonstart);
-        scoreText = view.findViewById(R.id.scoreText);
-        scoreText.setText("Score: " + MainActivity.score); // ضبط القيمة الأولية
+
+
         ImageView helpButton = view.findViewById(R.id.help_button);  // Assuming you have a button with this ID
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    "game_channel",
+                    "Game Notifications",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            NotificationManager manager = (NotificationManager) requireContext().getSystemService(Context.NOTIFICATION_SERVICE);
+            if (manager != null) {
+                manager.createNotificationChannel(channel);
+            }
+        }
         helpButton.setEnabled(false);
         helpButton.setOnClickListener(v -> showHelp());
 
@@ -160,7 +181,7 @@ public class ThirdRound extends Fragment {
     private void gameOver(boolean won) {
         isGameOver = true;
         if (won) {
-            if (timeRemaining > 90) {
+            if (timeRemaining >= 90) {
                 MainActivity.score += 20;  // إذا حلها في أقل من نصف الوقت
             } else {
                 MainActivity.score += 10;  // إذا حلها بعد نصف الوقت ولكن قبل انتهائه
@@ -170,7 +191,7 @@ public class ThirdRound extends Fragment {
             MainActivity.score -= (helpCount * 5);
             if (MainActivity.score < 0) MainActivity.score = 0; // لا نسمح بأن يكون الـ score سالبًا
             Toast.makeText(getActivity(), "You Win! Moving to the next round...", Toast.LENGTH_SHORT).show();
-            scoreText.setText("Score: " + MainActivity.score); // ضبط القيمة الأولية
+
             MainActivity.currentRound = 4;
             String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
             FirebaseFirestore.getInstance().collection("clinet")
@@ -185,6 +206,25 @@ public class ThirdRound extends Fragment {
                         }
                     });
             // تأخير بسيط لعرض رسالة الفوز قبل الانتقال
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity(), "game_channel")
+                    .setSmallIcon(R.drawable.baseline_notifications_active_24)
+                    .setContentTitle("Game Over")
+                    .setContentText("You win! Your score is: " + MainActivity.score)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+// فحص إذن الإشعارات قبل الإرسال
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (requireContext().checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+                        == PackageManager.PERMISSION_GRANTED) {
+                    NotificationManagerCompat.from(requireContext()).notify(1, builder.build());
+                } else {
+                    // ممكن تطلبي الإذن هنا إذا حابة
+                    Toast.makeText(getActivity(), "Notification permission not granted!", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                // لو الجهاز أقل من Android 13، الإذن غير مطلوب
+                NotificationManagerCompat.from(requireContext()).notify(1, builder.build());
+            }
             handler.postDelayed(() -> {
                 MainActivity.firstRoundFrame.setVisibility(View.INVISIBLE);
                 MainActivity.secondRoundFrame.setVisibility(View.INVISIBLE);
@@ -199,6 +239,11 @@ public class ThirdRound extends Fragment {
             }, 2000);
         } else {
             Toast.makeText(getActivity(), "Time's up! You Lose!", Toast.LENGTH_SHORT).show();
+            Fragment thirdroundFragment = new ThirdRound();
+            FragmentTransaction transaction3 = getFragmentManager().beginTransaction();
+            transaction3.replace(R.id.thirdRound_fram, thirdroundFragment); // استبدال الـ Fragment الحالي بـ FirstRound
+
+            transaction3.commit();
         }
     }
     private void showHelp() {
