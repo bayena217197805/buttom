@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grren"
+    android:background="@drawable/signinf"
     tools:context=".Loginfrag">
 
 
@@ -12,13 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="50sp"
-            android:text="login Fragment"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,22 +41,28 @@
 
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <Button
+            android:id="@+id/buttonlogij"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonlogij"
-            android:text="confirm"
             android:layout_gravity="center"
+            android:backgroundTint="#E890AE"
+            android:textColor="@color/black"
+            android:text="confirm"
 
 
             />
+
         <Button
-            android:layout_marginTop="50dp"
+            android:id="@+id/buttonsignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonsignup"
-            android:text="sign up"
             android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#C5708D"
+            android:textColor="@color/black"
+            android:text="sign up"
 
 
             />
