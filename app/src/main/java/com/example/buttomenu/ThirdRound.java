@@ -236,6 +236,7 @@ public class ThirdRound extends Fragment {
                 MainActivity.homFrame.setVisibility(View.INVISIBLE);
                 MainActivity.roundFourFrame.setVisibility(View.VISIBLE);
                 MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
+                MainActivity.theEndFrame.setVisibility(View.INVISIBLE);
             }, 2000);
         } else {
             Toast.makeText(getActivity(), "Time's up! You Lose!", Toast.LENGTH_SHORT).show();

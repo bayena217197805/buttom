@@ -199,7 +199,7 @@ public class RoundFive extends Fragment {
             MainActivity.score -= (helpCount * 5);
             if (MainActivity.score < 0) MainActivity.score = 0; // لا نسمح بأن يكون الـ score سالبًا
             Toast.makeText(getActivity(), "You Win!", Toast.LENGTH_SHORT).show();
-
+            MainActivity.currentRound=6;
             String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
             FirebaseFirestore.getInstance().collection("clinet")
                     .whereEqualTo("Email", userEmail)
@@ -209,9 +209,10 @@ public class RoundFive extends Fragment {
                             String docId = queryDocumentSnapshots.getDocuments().get(0).getId();
                             FirebaseFirestore.getInstance().collection("clinet")
                                     .document(docId)
-                                    .update("Score", MainActivity.score);
+                                    .update("Score", MainActivity.score,"Round", MainActivity.currentRound);
                         }
                     });
+
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity(), "game_channel")
                     .setSmallIcon(R.drawable.baseline_notifications_active_24)
                     .setContentTitle("Game Over")
@@ -231,6 +232,7 @@ public class RoundFive extends Fragment {
                 // لو الجهاز أقل من Android 13، الإذن غير مطلوب
                 NotificationManagerCompat.from(requireContext()).notify(1, builder.build());
             }
+            MainActivity.theEndFrame.setVisibility(View.VISIBLE);
     }
         else {
             Toast.makeText(getActivity(), "Time's up! You Lose!", Toast.LENGTH_SHORT).show();

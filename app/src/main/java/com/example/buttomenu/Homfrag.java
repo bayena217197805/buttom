@@ -80,6 +80,7 @@ private TextView textView;
                                         MainActivity.secondRoundFrame.setVisibility(View.INVISIBLE);
                                         MainActivity.signupFrame.setVisibility(View.INVISIBLE);
                                         MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.theEndFrame.setVisibility(View.INVISIBLE);
                                         break;
                                     case 2:
                                         MainActivity.secondRoundFrame.setVisibility(View.VISIBLE);
@@ -90,7 +91,7 @@ private TextView textView;
                                         MainActivity.detailsfram.setVisibility(View.INVISIBLE);
                                         MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
                                         MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
-
+                                        MainActivity.theEndFrame.setVisibility(View.INVISIBLE);
                                         MainActivity.signupFrame.setVisibility(View.INVISIBLE);
                                         MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
                                         break;
@@ -105,6 +106,7 @@ private TextView textView;
                                         MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
                                         MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
                                         MainActivity.signupFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.theEndFrame.setVisibility(View.INVISIBLE);
 
                                         break;
                                     case 4:
@@ -118,6 +120,7 @@ private TextView textView;
                                         MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
                                         MainActivity.signupFrame.setVisibility(View.INVISIBLE);
                                         MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.theEndFrame.setVisibility(View.INVISIBLE);
                                         break;
                                     case 5:
                                         MainActivity.roundFiveFrame.setVisibility(View.VISIBLE);
@@ -130,6 +133,21 @@ private TextView textView;
                                         MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
                                         MainActivity.signupFrame.setVisibility(View.INVISIBLE);
                                         MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.theEndFrame.setVisibility(View.INVISIBLE);
+
+                                        break;
+                                    case 6: // النهاية
+                                        MainActivity.theEndFrame.setVisibility(View.VISIBLE);
+                                        MainActivity.firstRoundFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.secondRoundFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.roundFiveFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.loginFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.homFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.instructionsFrame.setVisibility(View.INVISIBLE);
+                                        MainActivity.detailsfram.setVisibility(View.INVISIBLE);
+                                        MainActivity.signupFrame.setVisibility(View.INVISIBLE);
                                         break;
                                     default:
                                         MainActivity.firstRoundFrame.setVisibility(View.VISIBLE);
@@ -185,6 +203,7 @@ private TextView textView;
         MainActivity.secondRoundFrame.setVisibility(View.INVISIBLE);
         MainActivity.signupFrame.setVisibility(View.INVISIBLE);
         MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
+        MainActivity.theEndFrame.setVisibility(View.INVISIBLE);
 
 
     }

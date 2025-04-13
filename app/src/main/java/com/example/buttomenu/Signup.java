@@ -145,6 +145,7 @@ public class Signup extends Fragment {
                         MainActivity.secondRoundFrame.setVisibility(View.INVISIBLE);
                         MainActivity.signupFrame.setVisibility(View.INVISIBLE);
                         MainActivity.thirdRoundFrame.setVisibility(View.INVISIBLE);
+                        MainActivity.theEndFrame.setVisibility(View.INVISIBLE);
                     } else {
                         Toast.makeText(getActivity(), "فشل التسجيل: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }

@@ -31,6 +31,7 @@ private FirstRound firstRoundfrag;
 private ThirdRound thirdRoundfrag;
 private RoundFour roundFourfrag;
 private RoundFive roundFivefrag;
+private TheEnd theEndfrag;
 private BottomNavigationView bottomNavigationView;
 public static FrameLayout homFrame;
 public static FrameLayout signupFrame;
@@ -42,6 +43,7 @@ public static FrameLayout firstRoundFrame;
 public static FrameLayout  thirdRoundFrame;
 public static FrameLayout roundFourFrame;
 public static FrameLayout roundFiveFrame;
+public static FrameLayout theEndFrame;
 public static boolean islogin=false;
 public static int score=0;
 public static int currentRound = 1;
@@ -60,6 +62,7 @@ public static int currentRound = 1;
         thirdRoundFrame=findViewById(R.id.thirdRound_fram);
         roundFourFrame=findViewById(R.id.roundFour_fram);
         roundFiveFrame=findViewById(R.id.roundFive_fram);
+        theEndFrame=findViewById(R.id.theEnd_fram);
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
@@ -105,6 +108,7 @@ public static int currentRound = 1;
         thirdRoundfrag=new ThirdRound();
         roundFourfrag=new RoundFour();
         roundFivefrag=new RoundFive();
+        theEndfrag=new TheEnd();
         getSupportFragmentManager().beginTransaction().replace(R.id.home_fram,homfrag).commit();
         getSupportFragmentManager().beginTransaction().replace(R.id.instructions_fram,instructionsfrag).commit();
         getSupportFragmentManager().beginTransaction().replace(R.id.login_fram,loginfrag).commit();
@@ -115,6 +119,7 @@ public static int currentRound = 1;
         getSupportFragmentManager().beginTransaction().replace(R.id.thirdRound_fram,thirdRoundfrag).commit();
         getSupportFragmentManager().beginTransaction().replace(R.id.roundFour_fram,roundFourfrag).commit();
         getSupportFragmentManager().beginTransaction().replace(R.id.roundFive_fram,roundFivefrag).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.theEnd_fram,theEndfrag).commit();
 
 
         instructionsFrame.setVisibility(View.INVISIBLE);
@@ -126,6 +131,7 @@ public static int currentRound = 1;
         thirdRoundFrame.setVisibility(View.INVISIBLE);
         roundFourFrame.setVisibility(View.INVISIBLE);
         roundFiveFrame.setVisibility(View.INVISIBLE);
+        theEndFrame.setVisibility(View.INVISIBLE);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -140,6 +146,7 @@ public static int currentRound = 1;
                     thirdRoundFrame.setVisibility(View.INVISIBLE);
                     roundFourFrame.setVisibility(View.INVISIBLE);
                     roundFiveFrame.setVisibility(View.INVISIBLE);
+                    theEndFrame.setVisibility(View.INVISIBLE);
 
                 }
                 if(item.getItemId()==R.id.menuhome&&islogin){
@@ -153,6 +160,7 @@ public static int currentRound = 1;
                     thirdRoundFrame.setVisibility(View.INVISIBLE);
                     roundFourFrame.setVisibility(View.INVISIBLE);
                     roundFiveFrame.setVisibility(View.INVISIBLE);
+                    theEndFrame.setVisibility(View.INVISIBLE);
 
                 }
                 if(item.getItemId()==R.id.menuinstructions&&islogin){
@@ -166,6 +174,7 @@ public static int currentRound = 1;
                     thirdRoundFrame.setVisibility(View.INVISIBLE);
                     roundFourFrame.setVisibility(View.INVISIBLE);
                     roundFiveFrame.setVisibility(View.INVISIBLE);
+                    theEndFrame.setVisibility(View.INVISIBLE);
 
                 }
                 if(item.getItemId()==R.id.menu_details&&islogin){
@@ -179,6 +188,7 @@ public static int currentRound = 1;
                     thirdRoundFrame.setVisibility(View.INVISIBLE);
                     roundFourFrame.setVisibility(View.INVISIBLE);
                     roundFiveFrame.setVisibility(View.INVISIBLE);
+                    theEndFrame.setVisibility(View.INVISIBLE);
 
                 }
                 return true;

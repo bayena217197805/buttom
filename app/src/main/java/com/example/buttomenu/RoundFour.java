@@ -237,6 +237,7 @@ public class RoundFour extends Fragment {
                 MainActivity.roundFourFrame.setVisibility(View.INVISIBLE);
                 MainActivity.homFrame.setVisibility(View.INVISIBLE);
                 MainActivity.roundFiveFrame.setVisibility(View.VISIBLE);
+                MainActivity.theEndFrame.setVisibility(View.INVISIBLE);
             }, 2000);
         } else {
             Toast.makeText(getActivity(), "Time's up! You Lose!", Toast.LENGTH_SHORT).show();
