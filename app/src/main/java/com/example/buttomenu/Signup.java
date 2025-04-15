@@ -113,7 +113,7 @@ public class Signup extends Fragment {
 
 
         if (!nameLengthValid) {
-            Toast.makeText(getActivity(), "اسم المستخدم يجب أن يكون أطول من 4 حروف", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "الاسم يجب أن يكون أطول من 4 حروف", Toast.LENGTH_SHORT).show();
         } else if (!phoneValid) {
             Toast.makeText(getActivity(), "رقم الهاتف غير صالح. يجب أن يحتوي على 10 أرقام", Toast.LENGTH_SHORT).show();
         } else if (!emailValid) {

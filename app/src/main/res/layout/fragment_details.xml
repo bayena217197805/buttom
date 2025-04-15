@@ -59,7 +59,7 @@
 
                     android:textSize="20sp"
                     android:textColor="#ffffff"
-                    android:layout_marginStart="10dp"/>
+                    android:layout_marginStart="100dp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -85,7 +85,7 @@
 
                     android:textSize="20sp"
                     android:textColor="#ffffff"
-                    android:layout_marginStart="10dp"/>
+                    android:layout_marginStart="130dp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -111,7 +111,7 @@
 
                     android:textSize="20sp"
                     android:textColor="#ffffff"
-                    android:layout_marginStart="10dp"/>
+                    android:layout_marginStart="100dp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -137,7 +137,7 @@
 
                     android:textSize="20sp"
                     android:textColor="#ffffff"
-                    android:layout_marginStart="10dp"/>
+                    android:layout_marginStart="190dp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -162,7 +162,7 @@
 
                     android:textSize="20sp"
                     android:textColor="#ffffff"
-                    android:layout_marginStart="10dp"/>
+                    android:layout_marginStart="190dp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
